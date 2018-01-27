@@ -2,6 +2,11 @@
 
 public class Graph<T>
 {
+    public Graph()
+    {
+        ActiveNodes = new List<GraphNode<T>>();    
+    }
+
     public List<GraphNode<T>> ActiveNodes;
 
     public LinkedList<GraphNode<T>> TraverseNodes(GraphNode<T> startNode, GraphNode<T> endNode, Queue<GraphNode<T>> queue = null)
