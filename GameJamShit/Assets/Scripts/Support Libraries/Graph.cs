@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Graph : MonoBehaviour {
+public class Graph<T>
+{
+    public List<GraphNode<T>> ActiveNodes;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public List<GraphNode<T>> TraverseNodes(GraphNode<T> startNode )
+    {
+        return new List<GraphNode<T>>();
+    }
 }
