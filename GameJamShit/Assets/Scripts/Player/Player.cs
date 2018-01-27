@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Map;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,8 +9,14 @@ namespace Assets.Scripts.Player
 {
     public class Player : NetworkBehaviour, IEquatable<Player>
     {
+        public float SpawnInterval;
+
+        public GameObject NewsPrefab;
+
         public PlayerEntity Entity;
-        public GameObject SoldierSpawnPoint;
+        public TransmissionNode MainTransmissionNode;
+
+        public GameObject NewsSpawnPoin;
         [SyncVar]
         public Color Color;
 
@@ -18,7 +25,32 @@ namespace Assets.Scripts.Player
             Color = isLocalPlayer ? Color.blue : Color.red;
             var hq = transform.GetChild(0);
             hq.GetComponent<SpriteRenderer>().color = Color;
-            
+
+            if (isServer)
+            {
+                InvokeRepeating("SpawnCycle",3.0f,SpawnInterval);
+            }
+        }
+
+        [UsedImplicitly]
+        private void SpawnCycle()
+        {
+            CmdSpawnNews();
+        }
+
+        [Command]
+        private void CmdSpawnNews()
+        {
+            SpawnNews();
+        }
+
+        [ClientRpc]
+        private void SpawnNews()
+        {
+            var newsObject = Instantiate(NewsPrefab);
+            newsObject.transform.position = NewsSpawnPoin.transform.position;
+
+            MainTransmissionNode.NewsEntities.Enqueue(newsObject.GetComponent<NewsEntity>());
         }
 
         public void Update()
@@ -48,14 +80,6 @@ namespace Assets.Scripts.Player
         public void CmdAdvance(GameObject from, GameObject to)
         {
             from.GetComponent<TransmissionNode>().NewsEntities.Dequeue().RpcSendTo(to); 
-        }
-
-        [Command]
-        public void CmdTestRpc()
-        {
-            transform.Rotate(new Vector3(1,1),1.0f);
-            Debug.Log("rpc called");
-            
         }
 
         public bool Equals(Player other)

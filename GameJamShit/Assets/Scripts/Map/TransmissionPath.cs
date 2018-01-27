@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine.Networking;
 
-public class TransmissionPath : MonoBehaviour
+namespace Assets.Scripts.Map
 {
-    public TransmissionNode FromNode;
-    public TransmissionNode DestinationNode;
-	// Use this for initialization
-    public void Start ()
+    public class TransmissionPath : NetworkBehaviour
     {
-        gameObject.name = "TransmissionPath";
-    }
+        public TransmissionNode FromNode;
+        public TransmissionNode DestinationNode;
+        // Use this for initialization
+        public void Start ()
+        {
+            gameObject.name = "TransmissionPath";
+        }
 	
-	// Update is called once per frame
-	void Update () {
+        // Update is called once per frame
+        void Update () {
 		
-	}
+        }
+    }
 }
