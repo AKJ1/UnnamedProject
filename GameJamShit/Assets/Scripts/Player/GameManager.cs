@@ -2,30 +2,30 @@
 using Assets.Scripts.Player;
 using UnityEngine;
 
-    public class GameManager : MonoSingleton<GameManager>
-    { 
-        public List<Player> ActivePlayers;
+public class GameManager : MonoSingleton<GameManager>
+{ 
+    public List<Player> ActivePlayers;
 
-        public List<PlayerEntity> ActiveEntities;
+    public List<PlayerEntity> ActiveEntities;
 
-        public void RegisterPlayer(Player player)
+    public void RegisterPlayer(Player player)
+    {
+        if (ActivePlayers == null)
         {
-            if (ActivePlayers == null)
-            {
-                ActivePlayers = new List<Player>();
-                ActiveEntities = new List<PlayerEntity>();
-            }
-            ActivePlayers.Add(player);
-            ActiveEntities.Add(player.Entity);
+            ActivePlayers = new List<Player>();
+            ActiveEntities = new List<PlayerEntity>();
         }
-
-        public void BeginGame()
-        {
-            
-        }
-
-        public void EndGame()
-        {
-            
-        }
+        ActivePlayers.Add(player);
+        ActiveEntities.Add(player.Entity);
     }
+
+    public void BeginGame()
+    {
+            
+    }
+
+    public void EndGame()
+    {
+            
+    }
+}
