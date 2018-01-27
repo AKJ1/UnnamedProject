@@ -1,28 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts.Player;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Networking;
 
-public class TransmissionNode : MonoBehaviour
+public class TransmissionNode : NetworkBehaviour
 {
-    public int Health = 5;
-
-    public PlayerEntity Controller;
-
-    public event Action OnControllerChanged;
-
-    public void GetOwned(PlayerEntity entity)
-    {
-        Controller = entity;
-        OnOnControllerChanged();
-    }
+    public Player Owner;
+    public Queue<NewsEntity> NewsEntities;
+    public event UnityAction OnIvnsionDoneEffect;
     
-    public void Initialize()
-    {
-        Map.Instance.RegisterNode(this);
-    }
 
-
-    protected virtual void OnOnControllerChanged()
+    public void OnInvasion(Player invader, TransmissionNode from)
     {
-        OnControllerChanged?.Invoke();
+        if (Owner == null)
+        {
+            GetComponent<SpriteRenderer>().color = invader.Color;
+        }
+
+        
     }
 }

@@ -53,12 +53,18 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Map\CameraPan.cs" />
      <Compile Include="Assets\Scripts\Map\TransmissionNode.cs" />
+     <Compile Include="Assets\Scripts\Map\TransmissionPath.cs" />
+     <Compile Include="Assets\Scripts\NewsEntity.cs" />
+     <Compile Include="Assets\Scripts\Newtworking\CommunicationLayer.cs" />
+     <Compile Include="Assets\Scripts\Newtworking\DefaultBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Newtworking\NetcodeMain.cs" />
      <Compile Include="Assets\Scripts\Player\GameManager.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Support Libraries\Graph.cs" />
      <Compile Include="Assets\Scripts\Support Libraries\GraphNode.cs" />
      <Compile Include="Assets\Scripts\Support Libraries\Map.cs" />
      <Compile Include="Assets\Scripts\Support Libraries\MonoSingleton.cs" />
+     <Compile Include="Assets\Scripts\Test\FuccboiCube.cs" />
      <Compile Include="Assets\Scripts\Util\PropBillboard.cs" />
      <None Include="Assets\PostProcessing\Shaders\Builtins\FinalPass.shader" />
      <None Include="Assets\PostProcessing\Shaders\Debug\Waveform.compute" />

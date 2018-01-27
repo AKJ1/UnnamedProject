@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Player;
 using UnityEngine;
 
     public class GameManager : MonoSingleton<GameManager>
