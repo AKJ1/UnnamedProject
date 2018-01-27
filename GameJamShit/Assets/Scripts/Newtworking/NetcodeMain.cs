@@ -1,16 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class NewBehaviourScript : MonoBehaviour {
+namespace Assets.Scripts.Newtworking
+{
+    public class NetcodeMain : MonoBehaviour
+    {
 
-	// Use this for initialization
-	void Start () {
+        private NetworkManager _networkManager;
+
+        // Use this for initialization
+        public void Start ()
+        {
+            _networkManager = FindObjectOfType<NetworkManager>();
+        }
+
+        // Update is called once per frame
+        public void Update () {
 		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        }
+
+        
+        public void RemoteCall()
+        {
+            
+        }
+    }
 }
