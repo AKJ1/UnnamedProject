@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Map;
 
 public class Map : MonoSingleton<Map>
 {

@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.Scripts;
-using Assets.Scripts.Player;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
-public class TransmissionNode : NetworkBehaviour
+namespace Assets.Scripts.Map
 {
-    public Player Owner;
-    public Queue<NewsEntity> NewsEntities;
-    public event UnityAction OnIvnsionDoneEffect;
-    
-
-    public void OnInvasion(Player invader, TransmissionNode from)
+    public class TransmissionNode : NetworkBehaviour
     {
-        if (Owner == null)
+        public Player.Player Owner;
+        public Queue<NewsEntity> NewsEntities;
+        public event UnityAction OnIvnsionDoneEffect;
+    
+        public void OnInvasion(Player.Player invader, TransmissionNode from)
         {
-            GetComponent<SpriteRenderer>().color = invader.Color;
+            if (Owner == null)
+            {
+                GetComponent<SpriteRenderer>().color = invader.Color;
+            }
         }
-
-        
     }
 }

@@ -86,26 +86,10 @@ namespace Assets.Scripts.Player
         {
             return !ReferenceEquals(null, other) && ReferenceEquals(this, other);
         }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Player) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (base.GetHashCode() * 397) ^ Color.GetHashCode();
-            }
-        }
     }
 
     public enum PlayerEntity
     {
-        Blue, Red, Yellow, Green, Neutral
+        Blue, Red
     }
 }
