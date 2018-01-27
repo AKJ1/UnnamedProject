@@ -3,7 +3,7 @@ using UnityEngine.Networking;
 
 namespace Assets.Scripts.Newtworking
 {
-    public class NetcodeMain : MonoBehaviour
+    public class NetcodeMain : NetworkBehaviour
     {
 
         private NetworkManager _networkManager;
