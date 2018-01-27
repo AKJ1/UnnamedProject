@@ -20,7 +20,6 @@ public class TransmissionNode : MonoBehaviour
         Map.Instance.RegisterNode(this);
     }
 
-
     protected virtual void OnOnControllerChanged()
     {
         OnControllerChanged?.Invoke();
