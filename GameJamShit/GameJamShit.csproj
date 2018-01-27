@@ -289,9 +289,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Map\CameraPan.cs" />
+    <Compile Include="Assets\Scripts\Map\TransmissionNode.cs" />
+    <Compile Include="Assets\Scripts\Player\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Support Libraries\Graph.cs" />
     <Compile Include="Assets\Scripts\Support Libraries\GraphNode.cs" />
+    <Compile Include="Assets\Scripts\Support Libraries\Map.cs" />
+    <Compile Include="Assets\Scripts\Support Libraries\MonoSingleton.cs" />
     <Compile Include="Assets\Scripts\Util\PropBillboard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Scripts\Input\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
