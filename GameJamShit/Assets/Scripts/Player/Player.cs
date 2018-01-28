@@ -11,26 +11,12 @@ namespace Assets.Scripts.Player
     {
         public float SpawnInterval;
 
-        public GameObject NewsPrefab;
-
-        public PlayerEntity Entity;
+        public NewsEntity NewsPrefab;
+        
         public TransmissionNode MainTransmissionNode;
 
-        public GameObject NewsSpawnPoin;
-        [SyncVar]
         public Color Color;
 
-        public void Start()
-        {
-            Color = isLocalPlayer ? Color.blue : Color.red;
-            var hq = transform.GetChild(0);
-            hq.GetComponent<SpriteRenderer>().color = Color;
-
-            if (isServer)
-            {
-                InvokeRepeating("SpawnCycle",3.0f,SpawnInterval);
-            }
-        }
 
         [UsedImplicitly]
         private void SpawnCycle()
@@ -41,14 +27,14 @@ namespace Assets.Scripts.Player
         [Command]
         private void CmdSpawnNews()
         {
-            SpawnNews();
+            RpcSpawnNews();
         }
 
         [ClientRpc]
-        private void SpawnNews()
+        private void RpcSpawnNews()
         {
             var newsObject = Instantiate(NewsPrefab);
-            newsObject.transform.position = NewsSpawnPoin.transform.position;
+            newsObject.transform.position = MainTransmissionNode.transform.position;
 
             MainTransmissionNode.NewsEntities.Enqueue(newsObject.GetComponent<NewsEntity>());
         }
@@ -86,10 +72,21 @@ namespace Assets.Scripts.Player
         {
             return !ReferenceEquals(null, other) && ReferenceEquals(this, other);
         }
-    }
 
-    public enum PlayerEntity
-    {
-        Blue, Red
+        public void Initialize()
+        {
+            Color = isLocalPlayer ? Color.blue : Color.red;
+            var generator = FindObjectOfType<PointGenerator>();
+
+            MainTransmissionNode = isServer ? generator.StartNodeA : generator.StartNodeB;
+
+            var hq = MainTransmissionNode.transform.GetChild(0);
+            hq.GetComponent<SpriteRenderer>().color = Color;
+
+            if (isServer)
+            {
+                InvokeRepeating("SpawnCycle", 3.0f, SpawnInterval);
+            }
+        }
     }
 }
